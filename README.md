@@ -1,2 +1,2 @@
 # Calabonga.Microservices.Core
-Base microservice contracta nuget
+Base microservice contracts nuget
