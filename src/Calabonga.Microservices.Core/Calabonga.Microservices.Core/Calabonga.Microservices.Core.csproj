@@ -7,7 +7,7 @@
     <Company>Calabonga SOFT</Company>
     <Description>UnitOfWork for Microservices. All microservices in the system should and can use Unit of Work pattern. This package implements this pattern.</Description>
     <Copyright>Calabonga SOFT © 2019-2020</Copyright>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://www.calabonga.net/blog/post/microservices-2-shablon-dlya-bystrogo-sozdaniya-mikroservisa-na-baze--net-core</PackageProjectUrl>
     <PackageIcon></PackageIcon>
@@ -15,9 +15,9 @@
     <RepositoryType></RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, unitofwork, framework, helpers</PackageTags>
     <PackageReleaseNotes>New attribute created for EnumHelper.Parse()</PackageReleaseNotes>
-    <Version>2.1.2</Version>
-    <FileVersion>2.1.2.0</FileVersion>
-    <AssemblyVersion>2.1.2.0</AssemblyVersion>
+    <Version>2.1.3</Version>
+    <FileVersion>2.1.3.0</FileVersion>
+    <AssemblyVersion>2.1.3.0</AssemblyVersion>
     <PackageVersion>2.1.2</PackageVersion>
   </PropertyGroup>
 
