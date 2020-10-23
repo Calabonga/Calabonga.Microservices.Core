@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 
 namespace Calabonga.Microservices.Core
@@ -64,6 +65,26 @@ namespace Calabonga.Microservices.Core
                 return result;
             }
             return null;
+        }
+
+        public static TAttribute TryGetFromAttribute<TAttribute>(string value) 
+            where  TAttribute: Attribute
+        {
+            return typeof(T)
+                .GetTypeInfo()
+                .DeclaredMembers
+                .FirstOrDefault(x => x.Name == value)?
+                .GetCustomAttribute<TAttribute>(false);
+        }
+
+        public static TAttribute TryGetFromAttribute<TAttribute>(T value) 
+            where  TAttribute: Attribute
+        {
+            return typeof(T)
+                .GetTypeInfo()
+                .DeclaredMembers
+                .FirstOrDefault(x => x.Name == value.ToString())?
+                .GetCustomAttribute<TAttribute>(false);
         }
 
         /// <summary>
@@ -179,7 +200,7 @@ namespace Calabonga.Microservices.Core
     /// Provides a general-purpose attribute that lets you specify localizable strings
     /// for types and members of entity partial classes.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Field)]
     public class DisplayNamesAttribute : Attribute
     {
         public DisplayNamesAttribute(params string[] values)
