@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace Calabonga.Microservices.Core.Tests
 {
@@ -14,6 +15,7 @@ namespace Calabonga.Microservices.Core.Tests
         [Display(Name = "Простой")]
         Simple,
         
+        [EnumMember(Value = "Multiple")]
         [Display(Name = "Множественный")]
         Multiple,
         

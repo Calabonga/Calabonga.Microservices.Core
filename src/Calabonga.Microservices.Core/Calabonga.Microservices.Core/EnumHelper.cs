@@ -67,6 +67,12 @@ namespace Calabonga.Microservices.Core
             return null;
         }
 
+        /// <summary>
+        /// Return attribute to extract data from it
+        /// </summary>
+        /// <typeparam name="TAttribute"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static TAttribute TryGetFromAttribute<TAttribute>(string value) 
             where  TAttribute: Attribute
         {
@@ -77,6 +83,12 @@ namespace Calabonga.Microservices.Core
                 .GetCustomAttribute<TAttribute>(false);
         }
 
+        /// <summary>
+        /// Return attribute to extract data from it
+        /// </summary>
+        /// <typeparam name="TAttribute"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static TAttribute TryGetFromAttribute<TAttribute>(T value) 
             where  TAttribute: Attribute
         {

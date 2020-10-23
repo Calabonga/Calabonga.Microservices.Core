@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 using Shouldly;
 using Xunit;
 
@@ -18,6 +19,36 @@ namespace Calabonga.Microservices.Core.Tests
             
             // assert
             sut.ShouldBe(TestType.Value);
+        }
+        
+        [Fact]
+        [Trait("EnumHelper", "Parsing")]
+        public void ItShould_extract_attribute_by_type()
+        {
+            // arrange
+
+            var value = TestType.Multiple;
+
+            // act
+            var sut = EnumHelper<TestType>.TryGetFromAttribute<EnumMemberAttribute>(value);
+            
+            // assert
+            sut.Value.ShouldBe(TestType.Multiple.ToString());
+        }
+        
+        [Fact]
+        [Trait("EnumHelper", "Parsing")]
+        public void ItShould_extract_attribute_by_string()
+        {
+            // arrange
+
+            var value = TestType.Multiple;
+
+            // act
+            var sut = EnumHelper<TestType>.TryGetFromAttribute<EnumMemberAttribute>(value.ToString());
+            
+            // assert
+            sut.Value.ShouldBe(TestType.Multiple.ToString());
         }
 
         [Fact]

@@ -14,11 +14,11 @@
     <RepositoryUrl>https://github.com/Calabonga/microservice-template</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, unitofwork, framework, helpers</PackageTags>
-    <PackageReleaseNotes>Parsing from attribute added</PackageReleaseNotes>
-    <Version>2.1.4</Version>
-    <FileVersion>2.1.4.0</FileVersion>
-    <AssemblyVersion>2.1.4.0</AssemblyVersion>
-    <PackageVersion>2.1.4</PackageVersion>
+    <PackageReleaseNotes>Parsing from attribute added. And unit-tests were added.</PackageReleaseNotes>
+    <Version>2.1.5</Version>
+    <FileVersion>2.1.5.0</FileVersion>
+    <AssemblyVersion>2.1.5.0</AssemblyVersion>
+    <PackageVersion>2.1.5</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
