@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.2;netcoreapp3.1;</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.2;netcoreapp3.1;net5.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Calabonga</Authors>
     <Company>Calabonga SOFT</Company>
@@ -10,23 +10,22 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://www.calabonga.net/blog/post/microservices-2-shablon-dlya-bystrogo-sozdaniya-mikroservisa-na-baze--net-core</PackageProjectUrl>
-    <PackageIcon></PackageIcon>
+    <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Calabonga/microservice-template</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, unitofwork, framework, helpers</PackageTags>
-    <PackageReleaseNotes>Parsing from attribute added. And unit-tests were added.</PackageReleaseNotes>
-    <Version>2.1.5</Version>
-    <FileVersion>2.1.5.0</FileVersion>
-    <AssemblyVersion>2.1.5.0</AssemblyVersion>
-    <PackageVersion>2.1.5</PackageVersion>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="logo.png" />
-  </ItemGroup>
+    <PackageReleaseNotes>NET 5.0 migration</PackageReleaseNotes>
+    <Version>3.0.0-beta1</Version>
+    <FileVersion>3.0.0.0</FileVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\..\..\..\..\..\Documents\Pictures\logo.png" />
+    <None Include="logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
