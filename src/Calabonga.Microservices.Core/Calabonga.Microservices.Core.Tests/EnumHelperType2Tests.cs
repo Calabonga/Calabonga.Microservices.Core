@@ -1,7 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading;
+using System.Xml.Schema;
+
 using Shouldly;
+
 using Xunit;
 using Xunit.Abstractions;
 
@@ -21,10 +26,10 @@ namespace Calabonga.Microservices.Core.Tests
         public void ItShould_be_under_testing()
         {
             // arrange
-            
+
             // act
             var sut = EnumHelper<TestType2>.Parse("Value1");
-            
+
             // assert
             sut.ShouldBe(TestType2.Value1);
         }
@@ -109,7 +114,7 @@ namespace Calabonga.Microservices.Core.Tests
             // assert
             sut.ShouldNotBe(TestType2.Value2);
         }
-        
+
         [Fact]
         [Trait("EnumHelper", "Parsing")]
         public void ItShould_parse_DisplayAttribute_None()
@@ -131,7 +136,7 @@ namespace Calabonga.Microservices.Core.Tests
 
             // act
             var sut = EnumHelper<TestType2>.GetDisplayValues();
-            _outputHelper.WriteLine("{0}",string.Join(" ", sut));
+            _outputHelper.WriteLine("{0}", string.Join(" ", sut));
 
             // assert
             sut.ShouldNotBeEmpty();
@@ -145,12 +150,12 @@ namespace Calabonga.Microservices.Core.Tests
 
             // act
             var sut = EnumHelper<TestType2>.GetDisplayValues();
-            _outputHelper.WriteLine("{0}",string.Join(" ", sut));
+            _outputHelper.WriteLine("{0}", string.Join(" ", sut));
 
             // assert
             sut.Count.ShouldBe(4);
         }
-        
+
         [Fact]
         [Trait("EnumHelper", "Parsing")]
         public void ItShould_return_DisplayAttributes_4_items_with_values()
@@ -159,12 +164,59 @@ namespace Calabonga.Microservices.Core.Tests
             var flags = TestType2.Value1 | TestType2.Value2 | TestType2.Value3;
 
             // act
-            var sut1 = EnumHelper<TestType2>.GetUniqueFlags<TestType2>(flags);
-            var sut = EnumHelper<TestType2>.GetDisplayValue(flags);
-            _outputHelper.WriteLine("{0}",string.Join(" ", sut));
+            var sut1 = EnumHelper<TestType2>.GetUniqueFlags(flags).ToList();
+            var result = sut1.Select(EnumHelper<TestType2>.GetDisplayValue).ToList();
 
             // assert
-            // sut.ShouldBe(4);
+            result.Count.ShouldBe(3);
+        }
+
+        [Fact]
+        [Trait("EnumHelper", "Parsing")]
+        public void ItShould_return_DisplayAttributes_4_items_with_values_and_be_unique()
+        {
+            // arrange
+            var flags = TestType2.Value1 | TestType2.Value2 | TestType2.Value3;
+
+            // act
+            var sut1 = EnumHelper<TestType2>.GetUniqueFlags(flags).ToList();
+            var result = sut1.Select(EnumHelper<TestType2>.GetDisplayValue).ToList();
+
+            // assert
+            result.ShouldBeUnique();
+        }
+
+        [Fact]
+        [Trait("EnumHelper", "Parsing")]
+        public void ItShould_return_DisplayAttributes_4_items_with_values_and_contains_Value1()
+        {
+            // arrange
+            var flags = TestType2.Value1 | TestType2.Value2 | TestType2.Value3;
+
+            // act
+            var sut1 = EnumHelper<TestType2>.GetUniqueFlags(flags).ToList();
+            var result = sut1.Select(EnumHelper<TestType2>.GetDisplayValue).ToList();
+
+            // assert
+            result.ShouldContain("Значение1");
+            result.ShouldContain("Значение2");
+            result.ShouldContain("Значение3");
+            result.ShouldNotContain("Значение4");
+        }
+
+        [Fact]
+        [Trait("EnumHelper", "Parsing")]
+        public void ItShould_not_return_flags_for_enum()
+        {
+            // arrange
+            var notFlags = TestType.Value;
+
+            // act
+            var sut1 = EnumHelper<TestType2>.GetUniqueFlags(notFlags);
+            var r = sut1.ToList();
+
+            // assert
+            sut1.Count().ShouldBe(0);
         }
     }
 }

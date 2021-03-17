@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 
+using Calabonga.Microservices.Core.Extensions;
+
 namespace Calabonga.Microservices.Core
 {
     /// <summary>
@@ -168,7 +170,7 @@ namespace Calabonga.Microservices.Core
         /// <returns></returns>
         public static IList<string> GetDisplayValues()
         {
-            return GetNames().Select(obj => GetDisplayValue(Parse(obj))).ToList();
+            return typeof(T).HasAttribute<FlagsAttribute>() ? default(IList<string>) : GetNames().Select(obj => GetDisplayValue(Parse(obj))).ToList();
         }
 
         private static string LookupResource(Type resourceManagerProvider, string resourceKey)
@@ -192,8 +194,7 @@ namespace Calabonga.Microservices.Core
         /// <returns></returns>
         public static string GetDisplayValue(T value)
         {
-            var type = value.GetType();
-            var fieldInfo = type.GetField(value.ToString());
+            var fieldInfo = value.GetType().GetField(value.ToString());
 
             var descriptionAttributes = fieldInfo.GetCustomAttributes(typeof(DisplayAttribute), true) as DisplayAttribute[];
             if (descriptionAttributes?.Length > 0 && descriptionAttributes[0].ResourceType != null)
@@ -209,10 +210,24 @@ namespace Calabonga.Microservices.Core
             return (descriptionAttributes.Length > 0) ? descriptionAttributes[0].Name : value.ToString();
         }
 
-        public static IEnumerable<T> GetUniqueFlags<T>(Enum flags) where T : Enum
+        public static IEnumerable<T> GetUniqueFlags(Enum flags)
         {
-            return from Enum value in Enum.GetValues(flags.GetType()) where flags.HasFlag(value) select (T)value;
+            if (!flags.HasAttribute<FlagsAttribute>())
+            {
+                yield break;
+            }
+
+            foreach (var value in Enum.GetValues(flags.GetType()))
+            {
+                if (!flags.HasFlag((Enum)value))
+                {
+                    continue;
+                }
+
+                yield return (T)value;
+            }
         }
+
     }
 
     /// <summary>
