@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Calabonga.Microservices.Core.Tests
 {
-    public class EnumHelperTests
+    public class EnumHelperType1Tests
     {
 
         [Fact]
