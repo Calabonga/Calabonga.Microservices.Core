@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 
+using Calabonga.Microservices.Core.Extensions;
+
 namespace Calabonga.Microservices.Core
 {
     /// <summary>
@@ -73,8 +75,8 @@ namespace Calabonga.Microservices.Core
         /// <typeparam name="TAttribute"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TAttribute TryGetFromAttribute<TAttribute>(string value) 
-            where  TAttribute: Attribute
+        public static TAttribute TryGetFromAttribute<TAttribute>(string value)
+            where TAttribute : Attribute
         {
             return typeof(T)
                 .GetTypeInfo()
@@ -89,8 +91,8 @@ namespace Calabonga.Microservices.Core
         /// <typeparam name="TAttribute"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TAttribute TryGetFromAttribute<TAttribute>(T value) 
-            where  TAttribute: Attribute
+        public static TAttribute TryGetFromAttribute<TAttribute>(T value)
+            where TAttribute : Attribute
         {
             return typeof(T)
                 .GetTypeInfo()
@@ -127,23 +129,27 @@ namespace Calabonga.Microservices.Core
                 }
 
                 var descriptionAttributes = field.GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
-                if (!(descriptionAttributes?.Length > 0)) continue;
-                if (descriptionAttributes[0].ResourceType != null)
+                if (descriptionAttributes?.Length > 0)
                 {
-                    // Calabonga: Implement search in resources (resx) (2020-06-26 02:48 EnumHelper)
-                    // var stringValue = LookupResource(descriptionAttributes[0].ResourceType, descriptionAttributes[0].Name);
-                    return default(T);
-                }
-                if (descriptionAttributes[0].Name.Equals(displayValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    if (Enum.TryParse(field.Name, true, out T result1))
+                    if (descriptionAttributes[0].ResourceType != null)
                     {
-                        return result1;
+                        // Calabonga: Implement search in resources (resx) (2020-06-26 02:48 EnumHelper)
+                        // var stringValue = LookupResource(descriptionAttributes[0].ResourceType, descriptionAttributes[0].Name);
+                        return default(T);
                     }
-                }
-                if (Enum.TryParse(displayValue, true, out T result2))
-                {
-                    return result2;
+
+                    if (descriptionAttributes[0].Name.Equals(displayValue, StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (Enum.TryParse(field.Name, true, out T result1))
+                        {
+                            return result1;
+                        }
+                    }
+
+                    if (Enum.TryParse(displayValue, true, out T result2))
+                    {
+                        return result2;
+                    }
                 }
             }
             return null;
@@ -161,11 +167,10 @@ namespace Calabonga.Microservices.Core
         /// <summary>
         /// Returns values from Enum or Resource file if exists
         /// </summary>
-        /// <param name="value"></param>
         /// <returns></returns>
-        public static IList<string> GetDisplayValues(Enum value)
+        public static IList<string> GetDisplayValues()
         {
-            return GetNames().Select(obj => GetDisplayValue(Parse(obj))).ToList();
+            return typeof(T).HasAttribute<FlagsAttribute>() ? default(IList<string>) : GetNames().Select(obj => GetDisplayValue(Parse(obj))).ToList();
         }
 
         private static string LookupResource(Type resourceManagerProvider, string resourceKey)
@@ -191,7 +196,6 @@ namespace Calabonga.Microservices.Core
         {
             var fieldInfo = value.GetType().GetField(value.ToString());
 
-
             var descriptionAttributes = fieldInfo.GetCustomAttributes(typeof(DisplayAttribute), true) as DisplayAttribute[];
             if (descriptionAttributes?.Length > 0 && descriptionAttributes[0].ResourceType != null)
             {
@@ -205,6 +209,25 @@ namespace Calabonga.Microservices.Core
 
             return (descriptionAttributes.Length > 0) ? descriptionAttributes[0].Name : value.ToString();
         }
+
+        public static IEnumerable<T> GetUniqueFlags(Enum flags)
+        {
+            if (!flags.HasAttribute<FlagsAttribute>())
+            {
+                yield break;
+            }
+
+            foreach (var value in Enum.GetValues(flags.GetType()))
+            {
+                if (!flags.HasFlag((Enum)value))
+                {
+                    continue;
+                }
+
+                yield return (T)value;
+            }
+        }
+
     }
 
     /// <summary>

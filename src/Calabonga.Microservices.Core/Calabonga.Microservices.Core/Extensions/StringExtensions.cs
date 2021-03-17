@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Calabonga.Microservices.Core.Extensions
@@ -48,8 +50,7 @@ namespace Calabonga.Microservices.Core.Extensions
         {
             return StripHtmlExpression.Replace(target, string.Empty);
         }
-
-
+        
         [DebuggerStepThrough]
         public static T ToEnum<T>(this string target, T defaultValue) where T : IComparable, IFormattable
         {
@@ -67,6 +68,18 @@ namespace Calabonga.Microservices.Core.Extensions
             }
 
             return convertedValue;
+        }
+
+        [DebuggerStepThrough]
+        public static bool HasAttribute<T>(this object @this, bool inherit = false) where T : Attribute
+        {
+            return GetAttributes<T>(@this, inherit).Any();
+        }
+
+        [DebuggerStepThrough]
+        public static IEnumerable<T> GetAttributes<T>(this object @this, bool inherit = false) where T : Attribute
+        {
+            return @this.GetType().GetCustomAttributes(typeof(T), inherit).Cast<T>();
         }
     }
 }
