@@ -213,10 +213,9 @@ namespace Calabonga.Microservices.Core.Tests
 
             // act
             var sut1 = EnumHelper<TestType2>.GetUniqueFlags(notFlags);
-            var r = sut1.ToList();
-
+            
             // assert
-            sut1.Count().ShouldBe(0);
+            sut1.ToList().Count.ShouldBe(0);
         }
     }
 }
