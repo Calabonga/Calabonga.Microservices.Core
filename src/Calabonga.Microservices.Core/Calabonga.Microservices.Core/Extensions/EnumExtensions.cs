@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics;
 using Calabonga.Microservices.Core.Exceptions;
 
@@ -26,7 +27,7 @@ namespace Calabonga.Microservices.Core.Extensions
                 throw new MicroserviceArgumentNullException($"At least one target value is required {nameof(targets)}");
             }
 
-            return targets.Contains(source);
+            return ((IList) targets).Contains(source);
         }
     }
 }
