@@ -14,10 +14,10 @@
     <RepositoryUrl>https://github.com/Calabonga/Calabonga.Microservices.Core</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, framework, helpers, enum helper</PackageTags>
-    <PackageReleaseNotes>Migrated to NET5.0</PackageReleaseNotes>
-    <Version>3.0.1</Version>
-    <FileVersion>3.0.1.0</FileVersion>
-    <AssemblyVersion>3.0.1.0</AssemblyVersion>
+    <PackageReleaseNotes>Some helpful extensions added</PackageReleaseNotes>
+    <Version>3.0.2</Version>
+    <FileVersion>3.0.2.0</FileVersion>
+    <AssemblyVersion>3.0.2.0</AssemblyVersion>
       </PropertyGroup>
 
   <ItemGroup>

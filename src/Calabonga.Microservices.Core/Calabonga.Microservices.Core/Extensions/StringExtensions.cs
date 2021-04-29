@@ -81,5 +81,39 @@ namespace Calabonga.Microservices.Core.Extensions
         {
             return @this.GetType().GetCustomAttributes(typeof(T), inherit).Cast<T>();
         }
+
+        /// <summary>
+        /// Indicates whether the specified string is null or an empty string ("")
+        /// </summary>
+        /// <param name="source">Value to check</param>
+        /// <returns>
+        /// true if the source parameter is null or an empty string (""); otherwise, false
+        /// </returns>
+        [DebuggerStepThrough]
+        public static bool IsEmpty(this string source) => string.IsNullOrEmpty(source);
+
+        /// <summary>
+        /// Indicates whether the specified string is null or an empty string ("")
+        /// </summary>
+        /// <param name="source">Value to check</param>
+        /// <returns>
+        /// true if the source parameter is null or an empty string (""); otherwise, false
+        /// </returns>
+        [DebuggerStepThrough]
+        public static bool IsNotEmpty(this string source) => !IsEmpty(source);
+
+        /// <summary>
+        /// Indicates whether the specified strings is equal (case insensitive)
+        /// </summary>
+        /// <param name="source">Value to check</param>
+        /// <param name="target">Target value</param>
+        /// <returns>
+        /// true if the both parameters is empty (null or an empty string ("")) or equal (case insensitive);
+        /// otherwise, false
+        /// </returns>
+        [DebuggerStepThrough]
+        public static bool SameAs(this string source, string target) =>
+            string.IsNullOrEmpty(source) && string.IsNullOrEmpty(target) ||
+            string.Equals(source, target, StringComparison.OrdinalIgnoreCase);
     }
 }
