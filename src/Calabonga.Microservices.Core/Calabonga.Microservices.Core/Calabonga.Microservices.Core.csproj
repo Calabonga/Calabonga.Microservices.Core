@@ -14,10 +14,10 @@
     <RepositoryUrl>https://github.com/Calabonga/Calabonga.Microservices.Core</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, framework, helpers, enum helper</PackageTags>
-    <PackageReleaseNotes>Some helpful extensions added</PackageReleaseNotes>
-    <Version>3.0.2</Version>
-    <FileVersion>3.0.2.0</FileVersion>
-    <AssemblyVersion>3.0.2.0</AssemblyVersion>
+    <PackageReleaseNotes>Task extensions added for WhenAll()</PackageReleaseNotes>
+    <Version>3.0.3</Version>
+    <FileVersion>3.0.3.0</FileVersion>
+    <AssemblyVersion>3.0.3.0</AssemblyVersion>
       </PropertyGroup>
 
   <ItemGroup>
