@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.2;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Calabonga</Authors>
     <Company>Calabonga SOFT</Company>
@@ -15,10 +15,10 @@
     <RepositoryType></RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, framework, helpers, enum helper</PackageTags>
     <PackageReleaseNotes>Task extensions added for WhenAll()</PackageReleaseNotes>
-    <Version>3.0.3</Version>
-    <FileVersion>3.0.3.0</FileVersion>
-    <AssemblyVersion>3.0.3.0</AssemblyVersion>
-      </PropertyGroup>
+    <Version>4.0.0</Version>
+    <FileVersion>4.0.0.0</FileVersion>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+  </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\..\..\..\..\..\Documents\Pictures\logo.png" />
