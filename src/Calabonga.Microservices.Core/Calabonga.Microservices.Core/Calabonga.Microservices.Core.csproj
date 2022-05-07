@@ -6,7 +6,7 @@
     <Authors>Calabonga</Authors>
     <Company>Calabonga SOFT</Company>
     <Description>Some helpers for Microservices. All microservices in the system should and can use Unit of Work pattern. This package implements this pattern.</Description>
-    <Copyright>Calabonga SOFT © 2019-2021</Copyright>
+    <Copyright>Calabonga SOFT © 2019-2022</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/Calabonga/Calabonga.Microservices.Core</PackageProjectUrl>
