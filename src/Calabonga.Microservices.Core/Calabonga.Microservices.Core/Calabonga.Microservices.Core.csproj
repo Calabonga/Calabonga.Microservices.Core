@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net6.0;</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Calabonga</Authors>
     <Company>Calabonga SOFT</Company>
@@ -15,9 +15,9 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, framework, helpers, enum helper</PackageTags>
     <PackageReleaseNotes>String extension added</PackageReleaseNotes>
-    <Version>4.1.0</Version>
-    <FileVersion>4.1.0.0</FileVersion>
-    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <Version>4.1.1</Version>
+    <FileVersion>4.1.1.0</FileVersion>
+    <AssemblyVersion>4.1.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
