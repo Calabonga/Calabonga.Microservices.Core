@@ -5,19 +5,19 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Calabonga</Authors>
     <Company>Calabonga SOFT</Company>
-    <Description>Some helpers for Microservices. All microservices in the system should and can use Unit of Work pattern. This package implements this pattern.</Description>
-    <Copyright>Calabonga SOFT © 2019-2022</Copyright>
+    <Description>Some helpers for microservice developing. Package contains extensions (C#) that can simplify developer life.</Description>
+    <Copyright>Calabonga SOFT © 2019-2023</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/Calabonga/Calabonga.Microservices.Core</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Calabonga/Calabonga.Microservices.Core</RepositoryUrl>
-    <RepositoryType></RepositoryType>
+    <RepositoryType>git</RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, framework, helpers, enum helper</PackageTags>
-    <PackageReleaseNotes>Task extensions added for WhenAll()</PackageReleaseNotes>
-    <Version>4.0.0</Version>
-    <FileVersion>4.0.0.0</FileVersion>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <PackageReleaseNotes>String extension added</PackageReleaseNotes>
+    <Version>4.1.0</Version>
+    <FileVersion>4.1.0.0</FileVersion>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

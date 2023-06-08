@@ -1,28 +1,45 @@
-name: .NET Core
+name: Package Create & Publish
 
 on:
   push:
     branches: [ master ]
 
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+
+permissions:
+  contents: read
+
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
-    - name: Install dependencies
-      run: dotnet restore src/Calabonga.Microservices.Core/Calabonga.Microservices.Core.sln
-    - name: Build
-      run: dotnet build src/Calabonga.Microservices.Core/Calabonga.Microservices.Core.sln --configuration Release --no-restore 
-    - name: Tests
-      run: dotnet test src/Calabonga.Microservices.Core/Calabonga.Microservices.Core.Tests/Calabonga.Microservices.Core.Tests.csproj
-    - name: Publish Calabonga.Microservices.Core
-      uses: brandedoutcast/publish-nuget@v2.5.2
-      with:
-          PROJECT_FILE_PATH: src/Calabonga.Microservices.Core/Calabonga.Microservices.Core/Calabonga.Microservices.Core.csproj
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - uses: actions/checkout@v3
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Install dependencies
+        run: dotnet restore src/Calabonga.Microservices.Core/Calabonga.Microservices.Core.sln
+
+      - name: Build
+        run: dotnet build src/Calabonga.Microservices.Core/Calabonga.Microservices.Core/Calabonga.Microservices.Core.csproj --configuration Release --no-restore
+
+      - name: Build the NuGet package
+        run: dotnet pack  src/Calabonga.Microservices.Core/Calabonga.Microservices.Core/Calabonga.Microservices.Core.csproj --configuration Release --output ${{env.DOTNET_ROOT}}\Package
+
+      - name: Publish NuGet Package
+        run: dotnet nuget push ${{env.DOTNET_ROOT}}\Package\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

@@ -50,21 +50,19 @@ namespace Calabonga.Microservices.Core.Extensions
         {
             return StripHtmlExpression.Replace(target, string.Empty);
         }
-        
+
         [DebuggerStepThrough]
         public static T ToEnum<T>(this string target, T defaultValue) where T : IComparable, IFormattable
         {
             T convertedValue = defaultValue;
 
-            if (!string.IsNullOrEmpty(target))
+            if (string.IsNullOrEmpty(target)) return convertedValue;
+            try
             {
-                try
-                {
-                    convertedValue = (T)Enum.Parse(typeof(T), target.Trim(), true);
-                }
-                catch (ArgumentException)
-                {
-                }
+                convertedValue = (T)Enum.Parse(typeof(T), target.Trim(), true);
+            }
+            catch (ArgumentException)
+            {
             }
 
             return convertedValue;
@@ -93,6 +91,18 @@ namespace Calabonga.Microservices.Core.Extensions
         public static bool IsEmpty(this string source) => string.IsNullOrEmpty(source);
 
         /// <summary>
+        /// Checks whether <paramref name="enumerable"/> is null or empty.
+        /// </summary>
+        /// <typeparam name="T">The type of the <paramref name="enumerable"/>.</typeparam>
+        /// <param name="enumerable">The <see cref="IEnumerable{T}"/> to be checked.</param>
+        /// <returns>True if <paramref name="enumerable"/> is null or empty, false otherwise.</returns>
+        [DebuggerStepThrough]
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable == null || !enumerable.Any();
+        }
+
+        /// <summary>
         /// Indicates whether the specified string is null or an empty string ("")
         /// </summary>
         /// <param name="source">Value to check</param>
@@ -100,7 +110,7 @@ namespace Calabonga.Microservices.Core.Extensions
         /// true if the source parameter is null or an empty string (""); otherwise, false
         /// </returns>
         [DebuggerStepThrough]
-        public static bool IsNotEmpty(this string source) => !IsEmpty(source);
+        public static bool IsNotNullOrEmpty(this string source) => !IsNullOrEmpty(source);
 
         /// <summary>
         /// Indicates whether the specified strings is equal (case insensitive)
