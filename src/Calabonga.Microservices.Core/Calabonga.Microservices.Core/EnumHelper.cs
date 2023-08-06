@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Calabonga.Microservices.Core.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Net;
 using System.Reflection;
-
-using Calabonga.Microservices.Core.Extensions;
 
 namespace Calabonga.Microservices.Core
 {
