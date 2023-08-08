@@ -11,7 +11,6 @@ namespace Calabonga.Microservices.Core.Extensions
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tasks"></param>
-        /// <returns></returns>
         public static async Task<IEnumerable<T>> WhenAll<T>(params Task<T>[] tasks)
         {
             var allTasks = Task.WhenAll(tasks);

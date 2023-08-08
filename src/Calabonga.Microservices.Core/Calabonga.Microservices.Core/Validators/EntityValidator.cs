@@ -19,7 +19,6 @@ namespace Calabonga.Microservices.Core.Validators
         /// </summary>
         /// <param name="validationType"></param>
         /// <param name="entity"></param>
-        /// <returns></returns>
         public IEnumerable<ValidationResult> ValidateByOperationType(EntityValidationType validationType, TEntity entity)
         {
             switch (validationType)
@@ -94,7 +93,6 @@ namespace Calabonga.Microservices.Core.Validators
         /// Checks entity for errors and returns. Validates entity for business logic rules on Creating operations
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns></returns>
         public virtual IEnumerable<ValidationResult> ValidateOnInsert(TEntity entity)
         {
             return new List<ValidationResult>();
@@ -104,7 +102,6 @@ namespace Calabonga.Microservices.Core.Validators
         /// Checks entity for errors and returns. Validates entity for business logic rules on Editing operations
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns></returns>
         public virtual IEnumerable<ValidationResult> ValidateOnUpdate(TEntity entity)
         {
             return new List<ValidationResult>();
@@ -114,13 +111,15 @@ namespace Calabonga.Microservices.Core.Validators
         /// Returns common validation results for Insert and for Update operations
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns></returns>
         public virtual IEnumerable<ValidationResult> ValidateOnInsertOrUpdate(TEntity entity)
         {
             return new List<ValidationResult>();
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Add custom validation result
+        /// </summary>
+        /// <param name="validationResult"></param>
         public void AddValidationResult(ValidationResult validationResult)
         {
             ValidationContext.AddValidationResult(validationResult);

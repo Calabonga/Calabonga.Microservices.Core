@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Calabonga.Microservices.Core.Exceptions;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Calabonga.Microservices.Core.Exceptions;
 
 namespace Calabonga.Microservices.Core
 {
@@ -17,7 +17,6 @@ namespace Calabonga.Microservices.Core
         /// Compute Hash
         /// </summary>
         /// <param name="filePath"></param>
-        /// <returns></returns>
         public static byte[] ComputeHash(string filePath)
         {
             var runCount = 1;
@@ -56,7 +55,6 @@ namespace Calabonga.Microservices.Core
         /// Return file content
         /// </summary>
         /// <param name="filePath"></param>
-        /// <returns></returns>
         public static async Task<string> GetFileContent(string filePath)
         {
             try
@@ -100,7 +98,6 @@ namespace Calabonga.Microservices.Core
         /// </summary>
         /// <param name="filePath"></param>
         /// <param name="content"></param>
-        /// <returns></returns>
         public static async Task SetFileContent(string filePath, string content)
         {
             try
@@ -125,7 +122,7 @@ namespace Calabonga.Microservices.Core
             catch
             {
                 // ignored
-                
+
             }
         }
 
@@ -134,7 +131,6 @@ namespace Calabonga.Microservices.Core
         /// </summary>
         /// <param name="key"></param>
         /// <param name="contentBytes"></param>
-        /// <returns></returns>
         public static string GetETag(string key, byte[] contentBytes)
         {
             var keyBytes = Encoding.UTF8.GetBytes(key);
@@ -145,7 +141,6 @@ namespace Calabonga.Microservices.Core
         /// <summary>
         /// Returns Working folder path
         /// </summary>
-        /// <returns></returns>
         public static string GetWorkingFolder()
         {
             var location = System.Reflection.Assembly.GetEntryAssembly().Location;

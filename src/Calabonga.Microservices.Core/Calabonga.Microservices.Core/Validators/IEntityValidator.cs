@@ -13,28 +13,24 @@ namespace Calabonga.Microservices.Core.Validators
         /// </summary>
         /// <param name="validationType"></param>
         /// <param name="entity"></param>
-        /// <returns></returns>
         IEnumerable<ValidationResult> ValidateByOperationType(EntityValidationType validationType, TEntity entity);
 
         /// <summary>
         /// Checks entity for errors and returns. Validates entity for business logic rules on Creating operations
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns></returns>
         IEnumerable<ValidationResult> ValidateOnInsert(TEntity entity);
 
         /// <summary>
         /// Checks entity for errors and returns. Validates entity for business logic rules on Editing operations
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns></returns>
         IEnumerable<ValidationResult> ValidateOnUpdate(TEntity entity);
 
         /// <summary>
         /// Returns common validation results for Insert and for Update operations
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns></returns>
         IEnumerable<ValidationResult> ValidateOnInsertOrUpdate(TEntity entity);
 
         /// <summary>

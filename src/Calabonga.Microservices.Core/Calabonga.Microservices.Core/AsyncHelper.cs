@@ -20,7 +20,6 @@ namespace Calabonga.Microservices.Core
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="func"></param>
-        /// <returns></returns>
         public static TResult RunSync<TResult>(Func<Task<TResult>> func)
         {
             return AppTaskFactory

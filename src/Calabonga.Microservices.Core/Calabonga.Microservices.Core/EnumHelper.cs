@@ -16,7 +16,6 @@ namespace Calabonga.Microservices.Core
         /// <summary>
         /// Returns Enum with DisplayNames
         /// </summary>
-        /// <returns></returns>
         public static Dictionary<T, string> GetValuesWithDisplayNames()
         {
             var type = typeof(T);
@@ -32,7 +31,6 @@ namespace Calabonga.Microservices.Core
         /// <summary>
         /// Returns values from enum
         /// </summary>
-        /// <returns></returns>
         public static IList<T> GetValues()
         {
             return typeof(T).GetFields(BindingFlags.Static | BindingFlags.Public).Select(fi => (T)Enum.Parse(typeof(T), fi.Name, false)).ToList();
@@ -42,7 +40,6 @@ namespace Calabonga.Microservices.Core
         /// Parse displayValue by string from Enum
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
         public static T Parse(string value)
         {
             var displayName = TryParseDisplayValue(value);
@@ -57,7 +54,6 @@ namespace Calabonga.Microservices.Core
         /// Parse displayValue by string from Enum
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
         public static T? TryParse(string value)
         {
             if (Enum.TryParse(value, true, out T result))
@@ -72,7 +68,6 @@ namespace Calabonga.Microservices.Core
         /// </summary>
         /// <typeparam name="TAttribute"></typeparam>
         /// <param name="value"></param>
-        /// <returns></returns>
         public static TAttribute TryGetFromAttribute<TAttribute>(string value)
             where TAttribute : Attribute
         {
@@ -88,7 +83,6 @@ namespace Calabonga.Microservices.Core
         /// </summary>
         /// <typeparam name="TAttribute"></typeparam>
         /// <param name="value"></param>
-        /// <returns></returns>
         public static TAttribute TryGetFromAttribute<TAttribute>(T value)
             where TAttribute : Attribute
         {
@@ -103,7 +97,6 @@ namespace Calabonga.Microservices.Core
         /// Parse displayValue by string from Enum
         /// </summary>
         /// <param name="displayValue"></param>
-        /// <returns></returns>
         public static T? TryParseDisplayValue(string displayValue)
         {
             var fieldInfos = typeof(T).GetFields();
@@ -136,7 +129,8 @@ namespace Calabonga.Microservices.Core
                         return default(T);
                     }
 
-                    if (descriptionAttributes[0].Name.Equals(displayValue, StringComparison.OrdinalIgnoreCase))
+                    var name = descriptionAttributes[0].Name;
+                    if (name != null && name.Equals(displayValue, StringComparison.OrdinalIgnoreCase))
                     {
                         if (Enum.TryParse(field.Name, true, out T result1))
                         {
@@ -156,7 +150,6 @@ namespace Calabonga.Microservices.Core
         /// <summary>
         /// Returns values from Enum
         /// </summary>
-        /// <returns></returns>
         public static IEnumerable<string> GetNames()
         {
             return typeof(T).GetFields(BindingFlags.Static | BindingFlags.Public).Select(fi => fi.Name).ToList();
@@ -165,7 +158,6 @@ namespace Calabonga.Microservices.Core
         /// <summary>
         /// Returns values from Enum or Resource file if exists
         /// </summary>
-        /// <returns></returns>
         public static IList<string> GetDisplayValues()
         {
             return typeof(T).HasAttribute<FlagsAttribute>() ? default(IList<string>) : GetNames().Select(obj => GetDisplayValue(Parse(obj))).ToList();
@@ -189,7 +181,6 @@ namespace Calabonga.Microservices.Core
         /// Returns display name for Enum
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
         public static string GetDisplayValue(T value)
         {
             var fieldInfo = value.GetType().GetField(value.ToString());

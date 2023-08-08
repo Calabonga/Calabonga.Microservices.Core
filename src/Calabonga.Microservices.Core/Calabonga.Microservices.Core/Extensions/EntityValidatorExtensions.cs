@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Calabonga.Microservices.Core.Validators;
+﻿using Calabonga.Microservices.Core.Validators;
+using System.Collections.Generic;
 
 namespace Calabonga.Microservices.Core.Extensions
 {
@@ -12,7 +12,6 @@ namespace Calabonga.Microservices.Core.Extensions
         /// Returns validator from validation results
         /// </summary>
         /// <param name="source"></param>
-        /// <returns></returns>
         public static ValidationContext GetResult(this List<ValidationResult> source)
         {
             return new ValidationContext(source);

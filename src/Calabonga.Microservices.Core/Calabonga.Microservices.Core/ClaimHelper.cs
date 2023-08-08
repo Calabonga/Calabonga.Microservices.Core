@@ -1,12 +1,20 @@
-﻿using System;
+﻿using Calabonga.Microservices.Core.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Security.Claims;
-using Calabonga.Microservices.Core.Exceptions;
 
 namespace Calabonga.Microservices.Core
 {
+    public class ClaimsHelperOptions
+    {
+        /// <summary>
+        /// Generate claims names in lower case.
+        /// </summary>
+        public bool LowerCase { get; set; }
+    }
+
     /// <summary>
     /// Claim Helper
     /// </summary>
@@ -18,9 +26,11 @@ namespace Calabonga.Microservices.Core
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
         /// <param name="additionalClaims"></param>
-        /// <returns></returns>
-        public static IEnumerable<Claim> CreateClaims<T>(T entity, IEnumerable<Claim> additionalClaims = null) where T : class
+        /// <param name="options"></param>
+        public static IEnumerable<Claim> CreateClaims<T>(T entity, IEnumerable<Claim> additionalClaims = null, ClaimsHelperOptions options = null) where T : class
         {
+            var claimsOptions = options ?? new ClaimsHelperOptions();
+
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
@@ -32,13 +42,19 @@ namespace Calabonga.Microservices.Core
                 result.AddRange(additionalClaims);
             }
 
-            var properties = typeof(T).GetProperties().Where(t => t.PropertyType.IsPrimitive
-                                                                  || t.PropertyType.IsValueType
-                                                                  || (t.PropertyType == typeof(string)));
+            var properties = typeof(T)
+                .GetProperties()
+                .Where(t => t.PropertyType.IsPrimitive
+                            || t.PropertyType.IsValueType
+                            || (t.PropertyType == typeof(string)));
+
             var items = from property in properties
                         let value = property.GetValue(entity)
-                        where value != null
-                        select new Claim(property.Name, value?.ToString());
+                        where value != null && !string.IsNullOrEmpty(value.ToString())
+                        select new Claim(
+                            claimsOptions.LowerCase ? property.Name.ToLower() : property.Name,
+                            value?.ToString());
+
             result.AddRange(items);
             return result;
         }
@@ -49,7 +65,6 @@ namespace Calabonga.Microservices.Core
         /// <typeparam name="T"></typeparam>
         /// <param name="identity"></param>
         /// <param name="claimName"></param>
-        /// <returns></returns>
         public static T GetValue<T>(ClaimsIdentity identity, string claimName)
         {
             var claim = identity.FindFirst(x => x.Type == claimName);
@@ -79,7 +94,6 @@ namespace Calabonga.Microservices.Core
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
         /// <param name="claimName"></param>
-        /// <returns></returns>
         public static List<T> GetValues<T>(ClaimsIdentity items, string claimName)
         {
             var result = new List<T>();

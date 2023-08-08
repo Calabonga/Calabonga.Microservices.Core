@@ -14,7 +14,6 @@ namespace Calabonga.Microservices.Core.Extensions
         /// Gets the subject identifier.
         /// </summary>
         /// <param name="identity">The identity.</param>
-        /// <returns></returns>
         /// <exception cref="System.InvalidOperationException">sub claim is missing</exception>
         [DebuggerStepThrough]
         public static string GetSubjectId(this IIdentity identity)
