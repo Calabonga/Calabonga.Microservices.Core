@@ -6,7 +6,7 @@
     <Authors>Calabonga</Authors>
     <Company>Calabonga SOFT</Company>
     <Description>Some helpers for microservice developing. Package contains extensions (C#) that can simplify developer life.</Description>
-    <Copyright>Calabonga SOFT © 2019-2023</Copyright>
+    <Copyright>Calabonga SOFT © 2019-$([System.DateTime]::Now.ToString(yyyy))</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/Calabonga/Calabonga.Microservices.Core</PackageProjectUrl>
@@ -15,17 +15,22 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, framework, helpers, enum helper</PackageTags>
     <PackageReleaseNotes>ClaimsHelper updated for lowelcase property generation</PackageReleaseNotes>
-    <Version>5.1.0</Version>
+    <Version>5.2.0</Version>
     <AssemblyVersion></AssemblyVersion>
+    <Title>$(AssemblyName)</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\..\..\..\..\Documents\Pictures\logo.png" />
-    <None Include="logo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\..\README.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />

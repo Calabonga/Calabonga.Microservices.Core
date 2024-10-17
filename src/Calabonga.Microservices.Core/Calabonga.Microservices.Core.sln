@@ -5,13 +5,7 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calabonga.Microservices.Core", "Calabonga.Microservices.Core\Calabonga.Microservices.Core.csproj", "{CF3BECAA-8C86-4BB5-B745-989B64A386B7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17B547CD-6D44-4A47-864B-AFCF737A2F72}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\.github\FUNDING.yml = ..\..\.github\FUNDING.yml
-		..\..\.github\workflows\main.yml = ..\..\.github\workflows\main.yml
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calabonga.Microservices.Core.Tests", "Calabonga.Microservices.Core.Tests\Calabonga.Microservices.Core.Tests.csproj", "{97C4D71B-BF96-4545-96F2-1F080072F79F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calabonga.Microservices.Core.Tests", "Calabonga.Microservices.Core.Tests\Calabonga.Microservices.Core.Tests.csproj", "{97C4D71B-BF96-4545-96F2-1F080072F79F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

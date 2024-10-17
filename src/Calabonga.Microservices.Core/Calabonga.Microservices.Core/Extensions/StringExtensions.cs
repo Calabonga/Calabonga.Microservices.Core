@@ -149,5 +149,46 @@ namespace Calabonga.Microservices.Core.Extensions
         public static bool SameAs(this string source, string target) =>
             string.IsNullOrEmpty(source) && string.IsNullOrEmpty(target) ||
             string.Equals(source, target, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Returns formatted string of the File Size.
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        [DebuggerStepThrough]
+        public static string ToFileSize(this long size)
+        {
+            if (size < 1024)
+            {
+                return (size).ToString("F0") + " bytes";
+            }
+
+            if ((size >> 10) < 1024)
+            {
+                return (size / (float)1024).ToString("F1") + " KB";
+            }
+
+            if ((size >> 20) < 1024)
+            {
+                return ((size >> 10) / (float)1024).ToString("F1") + " MB";
+            }
+
+            if ((size >> 30) < 1024)
+            {
+                return ((size >> 20) / (float)1024).ToString("F1") + " GB";
+            }
+
+            if ((size >> 40) < 1024)
+            {
+                return ((size >> 30) / (float)1024).ToString("F1") + " TB";
+            }
+
+            if ((size >> 50) < 1024)
+            {
+                return ((size >> 40) / (float)1024).ToString("F1") + " PB";
+            }
+
+            return ((size >> 50) / (float)1024).ToString("F0") + " EB";
+        }
     }
 }
