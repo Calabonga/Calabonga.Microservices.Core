@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Threading;
-using System.Xml.Schema;
-
+using Calabonga.Utils.Extensions;
 using Shouldly;
-
-using Xunit;
 using Xunit.Abstractions;
 
 namespace Calabonga.Microservices.Core.Tests
@@ -213,7 +206,7 @@ namespace Calabonga.Microservices.Core.Tests
 
             // act
             var sut1 = EnumHelper<TestType2>.GetUniqueFlags(notFlags);
-            
+
             // assert
             sut1.ToList().Count.ShouldBe(0);
         }

@@ -1,4 +1,4 @@
-﻿using Calabonga.Microservices.Core.Extensions;
+﻿using Calabonga.Utils.Extensions;
 
 namespace Calabonga.Microservices.Core.Tests;
 
