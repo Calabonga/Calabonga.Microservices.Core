@@ -1,4 +1,4 @@
-name: Package Create & Publish
+name: Package Calabonga.Microservices.Core
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: Install dependencies
         run: dotnet restore src/Calabonga.Microservices.Core.sln
