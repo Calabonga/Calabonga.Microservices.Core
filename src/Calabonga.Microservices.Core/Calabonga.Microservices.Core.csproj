@@ -14,8 +14,8 @@
     <RepositoryUrl>https://github.com/Calabonga/Calabonga.Microservices.Core</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>calabonga, microservice, base, entity, framework, helpers, enum helper</PackageTags>
-    <PackageReleaseNotes>ClaimsHelper updated for lowelcase property generation</PackageReleaseNotes>
-    <Version>5.2.0</Version>
+    <PackageReleaseNotes>Some extensions moved into nuget Calabonga.Utils.Extensions</PackageReleaseNotes>
+    <Version>6.0.0</Version>
     <AssemblyVersion></AssemblyVersion>
     <Title>$(AssemblyName)</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -33,6 +33,7 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Calabonga.Utils.Extensions" Version="1.0.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 

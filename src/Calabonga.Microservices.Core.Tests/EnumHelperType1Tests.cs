@@ -1,7 +1,6 @@
-using Shouldly;
-using System;
 using System.Runtime.Serialization;
-using Xunit;
+using Calabonga.Utils.Extensions;
+using Shouldly;
 
 namespace Calabonga.Microservices.Core.Tests;
 
